@@ -13,29 +13,41 @@
         <h1>Hello ${sessionScope.email} </h1>
         You are now logged in as a Customer of our wonderful site.
         </br>
+        <form method="post" action="${pageContext.request.contextPath}/fc/bmiresult">
         <table>
-            <tr>
-                <th>Bottoms</th>
-                <th>toppings</th>
-            </tr>
-            <tr>
-                <td>
-                <select name="bottom" id="bottom">
-                    <c:forEach var="bottom" items="${applicationScope.bottomList}">
-                        <option value="${bottom.id}">${bottom.name}</option>
-                    </c:forEach>
-                </select>
-                </td>
-                <td>
-                    <select name="topping" id="topping">
-                    <c:forEach var="topping" items="${applicationScope.toppingList}">
-                        <option value="${topping.id}">${topping.name}</option>
-                    </c:forEach>
-                </select>
-                </td>
-            </tr>
-        </table>
-    </jsp:body>
+        <tr>
+            <th>Bottoms</th>
+            <th>Toppings</th>
+            <th>amount</th>
+        </tr>
+        <tr>
+        <td>
+            <select name="bottom" id="bottom">
+                <c:forEach var="bottom" items="${applicationScope.bottomList}">
+                    <option value="${bottom.id}">${bottom.name}</option>
+                </c:forEach>
+            </select>
+        </td>
+        <td>
+            <select name="topping" id="topping">
+                <c:forEach var="topping" items="${applicationScope.toppingList}">
+                    <option value="${topping.id}">${topping.name}</option>
+                </c:forEach>
+            </select>
+        </td>
+        <td>
+            <select name="amount" id="amount">
+                <c:forEach var="amount" items="${applicationScope.toppingList}">
+                    <option value="${topping.id}">${topping.name}</option>
+                </c:forEach>
+            </select>
+    </select>
+    </td>
+    </tr>
+    </table>
+            <button type="submit" class="btn btn-primary">submit</button>
+    </form>
+</jsp:body>
 
 </t:genericpage>
 
