@@ -30,6 +30,9 @@
              <c:if test="${sessionScope.role == 'customer' }">
                 <p style="font-size: larger">This is what you can do, since your
                     are logged in as a customer</p>
+
+             </br>
+
                 <p><a href="fc/customerpage">Customer Page</a>
             </c:if>
 
