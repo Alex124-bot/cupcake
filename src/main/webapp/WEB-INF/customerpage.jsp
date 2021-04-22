@@ -4,13 +4,13 @@
 
 <t:genericpage>
     <jsp:attribute name="header">
-         Demo Page for Customer Roles
+         Bestil cupcakes
     </jsp:attribute>
     <jsp:attribute name="footer">
     </jsp:attribute>
 
     <jsp:body>
-        <h1>Hello ${sessionScope.email} </h1>
+        <h2>Hej, ${sessionScope.email} </h2>
         You are now logged in as a Customer of our wonderful site.
         </br>
         <form method="post" action="${pageContext.request.contextPath}/fc/bmiresult">

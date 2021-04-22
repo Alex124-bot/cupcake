@@ -3,6 +3,12 @@
     The file is included in the genericpage.tag template
  */
 
+header {
+    background-image: url("../images/cc_cover_cropped.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
 #topmenu_login_dialogue
 {
     font-size: smaller;
