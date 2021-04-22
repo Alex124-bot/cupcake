@@ -3,10 +3,28 @@
     The file is included in the genericpage.tag template
  */
 
+html {
+    height: 100%;
+}
+
+body {
+    min-height: 100%;
+    background-image: url("../images/bg/ep_naturalwhite.png");
+    background-repeat: repeat;
+}
+
 header {
-    background-image: url("../images/cc_cover_cropped.jpg");
-    background-size: cover;
-    background-position: center;
+    background-image: url("../images/bg/ep_naturalblack.png");
+    background-repeat: repeat;
+}
+
+header h1 {
+    text-shadow: black;
+}
+
+.mainNav {
+    background-image: url("../images/bg/ep_naturalwhite.png");
+    background-repeat: repeat;
 }
 
 #topmenu_login_dialogue

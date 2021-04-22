@@ -124,7 +124,6 @@ public class CupcakeMapper {
         {
             throw new UserException("Connection to database could not be established");
         }
-
     }
 
     public void insertCupcakeEntry(

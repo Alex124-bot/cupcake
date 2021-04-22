@@ -26,12 +26,9 @@
 -->
 <header class="d-flex flex-column flex-md-row align-items-center p-sm-3 p-md-4 p-lg-5 px-md-4 mb-4 bg-white border-bottom shadow-sm">
     <div class="h5 my-0 me-md-auto fw-normal">
-        <p style="font-size: larger">
-            Olsker Cupcakes
-            <jsp:invoke fragment="header"/>
-        </p>
+        <h1 class="text-white text-uppercase font-weight-bold">Olsker Cupcakes</h1>
     </div>
-    <div class="d-flex flex-column flex-md-row align-items-center p-2 bg-white rounded-2">
+    <div class="mainNav d-flex flex-column flex-md-row align-items-center px-3 py-2 bg-white rounded-2">
         <nav class="my-2 my-md-0 me-md-3">
             <a class="p-2 text-dark" href="<%=request.getContextPath()%>">Hjem</a>
             <c:if test="${sessionScope.user.role.equals('customer') || sessionScope.user == null }">
