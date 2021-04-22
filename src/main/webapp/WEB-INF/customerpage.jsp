@@ -13,7 +13,7 @@
         <h1>Hello ${sessionScope.email} </h1>
         You are now logged in as a Customer of our wonderful site.
         </br>
-        <form method="post" action="${pageContext.request.contextPath}/fc/bmiresult">
+        <form method="post" action="${pageContext.request.contextPath}/fc/shoppingcart">
         <table>
         <tr>
             <th>Bottoms</th>
@@ -22,16 +22,16 @@
         </tr>
         <tr>
         <td>
-            <select name="bottom" id="bottom">
-                <c:forEach var="bottom" items="${applicationScope.bottomList}">
-                    <option value="${bottom.id}">${bottom.name}</option>
+            <select name="topping" id="topping">
+                <c:forEach var="topping" items="${applicationScope.toppingList}">
+                    <option value="${topping.topping_id}">${topping.topping_name}</option>
                 </c:forEach>
             </select>
         </td>
         <td>
-            <select name="topping" id="topping">
-                <c:forEach var="topping" items="${applicationScope.toppingList}">
-                    <option value="${topping.id}">${topping.name}</option>
+            <select name="bottom" id="bottom">
+                <c:forEach var="bottom" items="${applicationScope.bottomList}">
+                    <option value="${bottom.bottom_id}">${bottom.bottom_Name}</option>
                 </c:forEach>
             </select>
         </td>
@@ -54,6 +54,7 @@
     </table>
             <button type="submit" class="btn btn-primary">submit</button>
     </form>
+
 </jsp:body>
 
 </t:genericpage>

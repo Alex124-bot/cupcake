@@ -46,6 +46,7 @@ public class FrontController extends HttpServlet
         {
             getServletContext().setAttribute("bottomList", cupcakeMapper.getAllCupcakeBottoms());
             getServletContext().setAttribute("toppingList", cupcakeMapper.getAllCupcakeToppings());
+            getServletContext().setAttribute("orderList", cupcakeMapper.getAllOrders());
         } catch (UserException e) {
             e.printStackTrace();
         }
