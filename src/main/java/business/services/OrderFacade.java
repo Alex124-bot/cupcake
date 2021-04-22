@@ -24,7 +24,7 @@ public class OrderFacade
     }
 
     public void insertOrderEntry(
-            int order_id,
+            Integer order_id,
             int user_id,
             int created,
             int completed) throws UserException

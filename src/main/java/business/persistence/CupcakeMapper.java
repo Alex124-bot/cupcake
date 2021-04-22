@@ -144,7 +144,7 @@ public class CupcakeMapper {
             String sql =
                     "INSERT INTO `order`" +
                             "(" +
-                            "`order_id`," +
+                            "`ordre_id`," +
                             "`user_id`," +
                             "`created`," +
                             "`completed`)" +
@@ -168,8 +168,6 @@ public class CupcakeMapper {
     }
 
     public void insertCupcakeEntry(
-            int cupcake_id,
-            int order_id,
             int topping_id,
             int bottom_id,
             int amount) throws UserException {
@@ -177,19 +175,15 @@ public class CupcakeMapper {
             String sql =
                     "INSERT INTO `cupcake`" +
                             "(" +
-                            "`cupcake_id`," +
-                            "`order_id`," +
                             "`topping_id`," +
                             "`bottom_id`," +
                             "`amount`)" +
-                            "VALUES (?,?,?,?,?);";
+                            "VALUES (?,?,?);";
 
             try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-                ps.setInt(1, cupcake_id);
-                ps.setInt(2, order_id);
-                ps.setInt(3, topping_id);
-                ps.setInt(4, bottom_id);
-                ps.setInt(5, amount);
+                ps.setInt(2, topping_id);
+                ps.setInt(3, bottom_id);
+                ps.setInt(4, amount);
                 ps.executeUpdate();
 //                ResultSet ids = ps.getGeneratedKeys();
 //                ids.next();
