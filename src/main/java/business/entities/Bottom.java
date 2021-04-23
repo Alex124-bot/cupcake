@@ -2,9 +2,9 @@ package business.entities;
 
 public class Bottom {
 
-    private int bottom_id;
-    private String bottom_name;
-    private int price;
+    int bottom_id;
+    String bottom_name;
+    int price;
 
     public Bottom(int bottom_id, String bottom_name, int price) {
         this.bottom_id = bottom_id;
@@ -22,5 +22,10 @@ public class Bottom {
 
     public int getPrice() {
         return price;
+    }
+
+    @Override
+    public String toString() {
+        return bottom_name;
     }
 }

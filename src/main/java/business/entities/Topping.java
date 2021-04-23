@@ -1,9 +1,9 @@
 package business.entities;
 
 public class Topping {
-    private int topping_id;
-    private String topping_name;
-    private int price;
+    int topping_id;
+    String topping_name;
+    int price;
 
     public int getTopping_id() {
         return topping_id;
@@ -21,5 +21,10 @@ public class Topping {
         this.topping_id = topping_id;
         this.topping_name = topping_name;
         this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return topping_name;
     }
 }

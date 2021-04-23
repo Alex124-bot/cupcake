@@ -11,31 +11,23 @@
 
     <jsp:body>
         <h2>Hej, ${sessionScope.email} </h2>
-        You are now logged in as a Customer of our wonderful site.
-        </br>
-        <form method="post" action="${pageContext.request.contextPath}/fc/shoppingcart">
-        <table>
-        <tr>
-            <th>Bottoms</th>
-            <th>Toppings</th>
-            <th>amount</th>
-        </tr>
-        <tr>
-        <td>
+        <h4>Bestil cupcakes her</h4>
+        <form class="mt-4" method="post" action="${pageContext.request.contextPath}/fc/customerpage">
+            <label for="topping">Toppings</label>
             <select name="topping" id="topping">
                 <c:forEach var="topping" items="${applicationScope.toppingList}">
                     <option value="${topping.topping_id}">${topping.topping_name}</option>
                 </c:forEach>
             </select>
-        </td>
-        <td>
+
+            <label for="bottom">Bottoms</label>
             <select name="bottom" id="bottom">
                 <c:forEach var="bottom" items="${applicationScope.bottomList}">
                     <option value="${bottom.bottom_id}">${bottom.bottom_Name}</option>
                 </c:forEach>
             </select>
-        </td>
-        <td>
+
+            <label for="amount">amount</label>
             <select name="amount" id="amount">
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -48,14 +40,19 @@
                 <option value="9">9</option>
                 <option value="10">10</option>
             </select>
-    </select>
-    </td>
-    </tr>
-    </table>
-            <button type="submit" class="btn btn-primary">submit</button>
-    </form>
+            <button type="submit" class="btn btn-success">submit</button>
+        </form>
+        <div class="row">
+            <c:forEach var="tmpCake" items="${sessionScope.tmpOrder}">
+                <p>
+                    ${applicationScope.toppingList.get(tmpCake.toppingId).topping_name} -
+                    ${applicationScope.bottomList.get(tmpCake.bottomId).bottom_Name} x
+                    ${tmpCake.amount}
+                </p>
+            </c:forEach>
 
-</jsp:body>
+        </div>
+    </jsp:body>
 
 </t:genericpage>
 

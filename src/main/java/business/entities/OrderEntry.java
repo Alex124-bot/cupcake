@@ -3,10 +3,10 @@ package business.entities;
 import java.sql.Timestamp;
 
 public class OrderEntry {
-    private int order_id;
-    private int user_id;
-    private int created;
-    private int completed;
+    int order_id;
+    int user_id;
+    int created;
+    int completed;
 
     public OrderEntry(int order_id, int user_id, int created, int completed) {
         this.order_id = order_id;
