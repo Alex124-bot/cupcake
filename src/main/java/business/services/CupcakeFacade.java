@@ -23,12 +23,10 @@ public class CupcakeFacade
     }
 
     public void insertCupkageEntry(
-            int cupcake_id,
-            int order_id,
             int topping_id,
             int bottom_id,
             int amount) throws UserException
     {
-        cupcakeMapper.insertCupcakeEntry(cupcake_id, order_id, topping_id, bottom_id, amount );
+        cupcakeMapper.insertCupcakeEntry(topping_id, bottom_id, amount);
     }
 }

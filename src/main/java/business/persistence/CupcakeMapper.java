@@ -2,6 +2,7 @@ package business.persistence;
 
 import business.entities.Bottom;
 import business.entities.CupcakeEntry;
+import business.entities.OrderEntry;
 import business.entities.Topping;
 import business.exceptions.UserException;
 
@@ -13,24 +14,19 @@ public class CupcakeMapper {
 
     private Database database;
 
-    public CupcakeMapper(Database database)
-    {
+    public CupcakeMapper(Database database) {
         this.database = database;
     }
 
-    public List<CupcakeEntry> getAllCupcakes() throws UserException
-    {
+    public List<CupcakeEntry> getAllCupcakes() throws UserException {
         List<CupcakeEntry> cupkageEntryList = new ArrayList<>();
 
-        try (Connection connection = database.connect())
-        {
+        try (Connection connection = database.connect()) {
             String sql = "SELECT * FROM cupcake;";
 
-            try (PreparedStatement ps = connection.prepareStatement(sql))
-            {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ResultSet rs = ps.executeQuery();
-                while (rs.next())
-                {
+                while (rs.next()) {
                     int cupkageId = rs.getInt("cupcake_id");
                     int orderId = rs.getInt("order_id");
                     int toppingId = rs.getInt("topping_id");
@@ -42,32 +38,24 @@ public class CupcakeMapper {
                             cupkageId, orderId, toppingId, bottomId, amount));
                 }
                 return cupkageEntryList;
-            }
-            catch (SQLException ex)
-            {
+            } catch (SQLException ex) {
                 throw new UserException(ex.getMessage());
             }
-        }
-        catch (SQLException ex)
-        {
+        } catch (SQLException ex) {
             throw new UserException("Connection to database could not be established");
         }
 
     }
 
-    public List<Bottom> getAllCupcakeBottoms() throws UserException
-    {
+    public List<Bottom> getAllCupcakeBottoms() throws UserException {
         List<Bottom> bottomList = new ArrayList<>();
 
-        try (Connection connection = database.connect())
-        {
+        try (Connection connection = database.connect()) {
             String sql = "SELECT * FROM bottom;";
 
-            try (PreparedStatement ps = connection.prepareStatement(sql))
-            {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ResultSet rs = ps.executeQuery();
-                while (rs.next())
-                {
+                while (rs.next()) {
                     int bottomId = rs.getInt("bottom_id");
                     String name = rs.getString("name");
                     int price = rs.getInt("price");
@@ -78,32 +66,24 @@ public class CupcakeMapper {
                             price));
                 }
                 return bottomList;
-            }
-            catch (SQLException ex)
-            {
+            } catch (SQLException ex) {
                 throw new UserException(ex.getMessage());
             }
-        }
-        catch (SQLException ex)
-        {
+        } catch (SQLException ex) {
             throw new UserException("Connection to database could not be established");
         }
 
     }
 
-    public List<Topping> getAllCupcakeToppings() throws UserException
-    {
+    public List<Topping> getAllCupcakeToppings() throws UserException {
         List<Topping> toppingList = new ArrayList<>();
 
-        try (Connection connection = database.connect())
-        {
+        try (Connection connection = database.connect()) {
             String sql = "SELECT * FROM topping;";
 
-            try (PreparedStatement ps = connection.prepareStatement(sql))
-            {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ResultSet rs = ps.executeQuery();
-                while (rs.next())
-                {
+                while (rs.next()) {
                     int toppingId = rs.getInt("topping_id");
                     String name = rs.getString("name");
                     int price = rs.getInt("price");
@@ -114,48 +94,100 @@ public class CupcakeMapper {
                             price));
                 }
                 return toppingList;
-            }
-            catch (SQLException ex)
-            {
+            } catch (SQLException ex) {
                 throw new UserException(ex.getMessage());
             }
-        }
-        catch (SQLException ex)
-        {
+        } catch (SQLException ex) {
             throw new UserException("Connection to database could not be established");
         }
     }
 
-    public void insertCupcakeEntry(
-            int cupcake_id,
+    public List<OrderEntry> getAllOrders() throws UserException {
+        List<OrderEntry> orderList = new ArrayList<>();
+
+        try (Connection connection = database.connect()) {
+            String sql = "SELECT * FROM order;";
+
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ResultSet rs = ps.executeQuery();
+                while (rs.next()) {
+                    int orderId = rs.getInt("order_id");
+                    int userId = rs.getInt("user_id");
+                    int created = rs.getInt("created");
+                    int completed = rs.getInt("completed");
+
+                    orderList.add(new OrderEntry(
+                            orderId,
+                            userId,
+                            created,
+                            completed));
+                }
+                return orderList;
+
+            } catch (SQLException ex) {
+                throw new UserException("Connection to database could not be established");
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return orderList;
+    }
+
+    public void insertOrderEntry(
             int order_id,
+            int user_id,
+            int created,
+            int completed) throws UserException {
+        try (Connection connection = database.connect()) {
+            String sql =
+                    "INSERT INTO `order`" +
+                            "(" +
+                            "`ordre_id`," +
+                            "`user_id`," +
+                            "`created`," +
+                            "`completed`)" +
+                            "VALUES (?,?,?,?);";
+
+            try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+                ps.setInt(1, order_id);
+                ps.setInt(2, user_id);
+                ps.setInt(3, created);
+                ps.setInt(4, completed);
+                ps.executeUpdate();
+                ResultSet ids = ps.getGeneratedKeys();
+                ids.next();
+                int cupcakeEntryId = ids.getInt(1);
+            } catch (SQLException ex) {
+                throw new UserException(ex.getMessage());
+            }
+        } catch (SQLException | UserException ex) {
+            throw new UserException(ex.getMessage());
+        }
+    }
+
+    public void insertCupcakeEntry(
             int topping_id,
             int bottom_id,
             int amount) throws UserException {
-        try (Connection connection = database.connect())
-        {
+        try (Connection connection = database.connect()) {
             String sql =
                     "INSERT INTO `cupcake`" +
                             "(" +
-                            "`cupcake_id`," +
-                            "`order_id`," +
                             "`topping_id`," +
                             "`bottom_id`," +
                             "`amount`)" +
-                            "VALUES (?,?,?,?,?);";
+                            "VALUES (?,?,?);";
 
             try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-                ps.setInt(1, cupcake_id);
-                ps.setInt(2, order_id);
-                ps.setInt(3, topping_id);
-                ps.setInt(4, bottom_id);
-                ps.setInt(5, amount);
+                ps.setInt(2, topping_id);
+                ps.setInt(3, bottom_id);
+                ps.setInt(4, amount);
                 ps.executeUpdate();
 //                ResultSet ids = ps.getGeneratedKeys();
 //                ids.next();
 //                int cupcakeEntryId = ids.getInt(1);
-            }
-            catch (SQLException ex) {
+            } catch (SQLException ex) {
                 throw new UserException(ex.getMessage());
             }
         } catch (SQLException | UserException ex) {
