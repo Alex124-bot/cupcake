@@ -17,13 +17,13 @@ public class OrderFacade
         this.cupcakeMapper = new CupcakeMapper(database);
     }
 
-    public List<Order> getAllOrderDataEntries() throws UserException
+    public List<Order> getOrderList() throws UserException
     {
         return cupcakeMapper.getOrderList();
     }
 
-    public void insertOrderEntry(
-            Integer order_id,
+    public void insertOrder(
+            int order_id,
             int user_id,
             int created,
             int completed) throws UserException

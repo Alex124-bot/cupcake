@@ -26,7 +26,7 @@ public class CustomerPage extends CommandProtectedPage {
                 topId = Integer.parseInt(request.getParameter("topping"));
                 botId = Integer.parseInt(request.getParameter("bottom"));
                 amount = Integer.parseInt(request.getParameter("amount"));
-            } catch (Exception e) {
+            } catch (NumberFormatException e) {
                 e.printStackTrace();
             }
             basket = (session.getAttribute("basket") == null) ?

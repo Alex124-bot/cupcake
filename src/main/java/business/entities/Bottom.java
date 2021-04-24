@@ -1,7 +1,6 @@
 package business.entities;
 
 public class Bottom {
-
     int id;
     String name;
     int price;
