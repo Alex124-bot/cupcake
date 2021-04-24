@@ -8,7 +8,7 @@ public class User {
         this.role = role;
     }
 
-    int user_id; // just used to demo retrieval of autogen keys in UserMapper
+    int id; // just used to demo retrieval of autogen keys in UserMapper
     String email;
     String password; // Should be hashed and secured
     String role;
@@ -37,12 +37,12 @@ public class User {
         this.role = role;
     }
 
-    public int getUser_id() {
-        return user_id;
+    public int getId() {
+        return id;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setId(int id) {
+        this.id = id;
     }
 
 }

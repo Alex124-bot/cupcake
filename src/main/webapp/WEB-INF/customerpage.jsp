@@ -53,7 +53,15 @@
                     * basketItem.amount},- kr.
                 </p>
             </c:forEach>
-
+            <c:forEach var="basketItem" items="${sessionScope.basket}">
+                <div class="list-group">
+                    <a href="#" class="list-group-item list-group-item-action list-group-item-success">${applicationScope.toppingList.get(basketItem.toppingId-1).topping_name}</a>
+                    <a href="#" class="list-group-item list-group-item-action list-group-item-danger">${applicationScope.bottomList.get(basketItem.bottomId-1).bottom_Name}</a>
+                    <a href="#" class="list-group-item list-group-item-action list-group-item-warning">${basketItem.amount}</a>
+                    <a href="#" class="list-group-item list-group-item-action list-group-item-info">+ applicationScope.bottomList.get(basketItem.bottomId-1).price
+                        * basketItem.amount},- kr.</a>
+                </div>
+            </c:forEach>
         </div>
     </jsp:body>
 
