@@ -21,4 +21,5 @@ public class CupcakeFacade {
     public void insertCupcake(int toppingId, int bottomId, int amount) throws UserException {
         cupcakeMapper.insertCupcake(toppingId, bottomId, amount);
     }
+
 }
