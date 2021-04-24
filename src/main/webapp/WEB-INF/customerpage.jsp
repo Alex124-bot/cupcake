@@ -13,56 +13,59 @@
         <h2>Hej, ${sessionScope.email} </h2>
         <h4>Bestil cupcakes her</h4>
         <form class="mt-4" method="post" action="${pageContext.request.contextPath}/fc/customerpage">
-            <label for="topping">Toppings</label>
-            <select name="topping" id="topping">
-                <c:forEach var="topping" items="${applicationScope.toppingList}">
-                    <option value="${topping.topping_id}">${topping.topping_name}</option>
-                </c:forEach>
-            </select>
+        <label for="topping">Toppings</label>
+        <select name="topping" id="topping">
+        <c:forEach var="topping" items="${applicationScope.toppingList}">
+            <option value="${topping.topping_id}">${topping.topping_name}</option>
+        </c:forEach>
+        </select>
 
-            <label for="bottom">Bottoms</label>
-            <select name="bottom" id="bottom">
-                <c:forEach var="bottom" items="${applicationScope.bottomList}">
-                    <option value="${bottom.bottom_id}">${bottom.bottom_Name}</option>
-                </c:forEach>
-            </select>
+        <label for="bottom">Bottoms</label>
+        <select name="bottom" id="bottom">
+        <c:forEach var="bottom" items="${applicationScope.bottomList}">
+            <option value="${bottom.bottom_id}">${bottom.bottom_Name}</option>
+        </c:forEach>
+        </select>
 
-            <label for="amount">amount</label>
-            <select name="amount" id="amount">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
-            </select>
-            <button type="submit" class="btn btn-success">submit</button>
+        <label for="amount">amount</label>
+        <select name="amount" id="amount">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        </select>
+        <button type="submit" class="btn btn-success">submit</button>
         </form>
-        <div class="row">
-            <c:forEach var="basketItem" items="${sessionScope.basket}">
-                <p>
-                    ${applicationScope.toppingList.get(basketItem.toppingId-1).topping_name} -
-                    ${applicationScope.bottomList.get(basketItem.bottomId-1).bottom_Name} x
-                    ${basketItem.amount}
-                    ${applicationScope.toppingList.get(basketItem.toppingId-1).price
+
+
+        <table class="table">
+        <thead>
+        <tr>
+        <th scope="col">Top</th>
+        <th scope="col">Bund</th>
+        <th scope="col">Antal</th>
+        <th scope="col">Pris</th>
+        </tr>
+        </thead>
+        <tbody>
+        <c:forEach var="basketItem" items="${sessionScope.basket}">
+            <tr>
+            <td scope="row">${applicationScope.toppingList.get(basketItem.toppingId-1).topping_name}</td>
+            <td>${applicationScope.bottomList.get(basketItem.bottomId-1).bottom_Name}</td>
+            <td>${basketItem.amount}</td>
+            <td>${applicationScope.toppingList.get(basketItem.toppingId-1).price
                     + applicationScope.bottomList.get(basketItem.bottomId-1).price
-                    * basketItem.amount},- kr.
-                </p>
+                    * basketItem.amount},- kr.</td>
+            </tr>
             </c:forEach>
-            <c:forEach var="basketItem" items="${sessionScope.basket}">
-                <div class="list-group">
-                    <a href="#" class="list-group-item list-group-item-action list-group-item-success">${applicationScope.toppingList.get(basketItem.toppingId-1).topping_name}</a>
-                    <a href="#" class="list-group-item list-group-item-action list-group-item-danger">${applicationScope.bottomList.get(basketItem.bottomId-1).bottom_Name}</a>
-                    <a href="#" class="list-group-item list-group-item-action list-group-item-warning">${basketItem.amount}</a>
-                    <a href="#" class="list-group-item list-group-item-action list-group-item-info">+ applicationScope.bottomList.get(basketItem.bottomId-1).price
-                        * basketItem.amount},- kr.</a>
-                </div>
-            </c:forEach>
-        </div>
+        </tbody>
+        </table>
     </jsp:body>
 
 </t:genericpage>
