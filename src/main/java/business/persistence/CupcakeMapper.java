@@ -166,8 +166,8 @@ public class CupcakeMapper {
     }
 
     public void insertCupcake(
-            int topping_id,
-            int bottom_id,
+            int toppingId,
+            int bottomId,
             int amount) throws UserException {
         try (Connection connection = database.connect()) {
             String sql =
@@ -179,8 +179,8 @@ public class CupcakeMapper {
                             "VALUES (?,?,?);";
 
             try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-                ps.setInt(2, topping_id);
-                ps.setInt(3, bottom_id);
+                ps.setInt(2, toppingId);
+                ps.setInt(3, bottomId);
                 ps.setInt(4, amount);
                 ps.executeUpdate();
 //                ResultSet ids = ps.getGeneratedKeys();

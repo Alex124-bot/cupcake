@@ -16,14 +16,14 @@
             <label for="topping">Toppings</label>
             <select name="topping" id="topping">
                 <c:forEach var="topping" items="${applicationScope.toppingList}">
-                    <option value="${topping.topping_id}">${topping.topping_name}</option>
+                    <option value="${topping.getId()}">${topping.getName()}</option>
                 </c:forEach>
             </select>
 
             <label for="bottom">Bottoms</label>
             <select name="bottom" id="bottom">
                 <c:forEach var="bottom" items="${applicationScope.bottomList}">
-                    <option value="${bottom.bottom_id}">${bottom.bottom_Name}</option>
+                    <option value="${bottom.getId()}">${bottom.getName()}</option>
                 </c:forEach>
             </select>
 
@@ -56,12 +56,12 @@
             <tbody>
             <c:forEach var="basketItem" items="${sessionScope.basket}">
                 <tr>
-                    <td scope="row">${applicationScope.toppingList.get(basketItem.toppingId-1).topping_name}</td>
-                    <td>${applicationScope.bottomList.get(basketItem.bottomId-1).bottom_Name}</td>
-                    <td>${basketItem.amount}</td>
-                    <td>${applicationScope.toppingList.get(basketItem.toppingId-1).price
-                            + applicationScope.bottomList.get(basketItem.bottomId-1).price
-                            * basketItem.amount},- kr.</td>
+                    <td scope="row">${applicationScope.toppingList.get(basketItem.getToppingId()-1).getName()}</td>
+                    <td>${applicationScope.bottomList.get(basketItem.getBottomId()-1).getName()}</td>
+                    <td>${basketItem.getAmount()}</td>
+                    <td>${applicationScope.toppingList.get(basketItem.getToppingId()-1).getPrice()
+                            + applicationScope.bottomList.get(basketItem.getBottomId()-1).getPrice()
+                            * basketItem.getAmount()},- kr.</td>
                 </tr>
             </c:forEach>
             </tbody>

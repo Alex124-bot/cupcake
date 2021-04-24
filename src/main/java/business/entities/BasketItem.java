@@ -1,7 +1,7 @@
 package business.entities;
 
 public class BasketItem {
-    int toppingId, bottomId, amount;
+    private int toppingId, bottomId, amount;
 
     public BasketItem(int toppingId, int bottomId, int amount) {
         this.toppingId = toppingId;
