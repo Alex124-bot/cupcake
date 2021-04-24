@@ -18,6 +18,7 @@ public class CupcakeMapper {
         this.database = database;
     }
 
+    /*
     public List<Cupcake> getCupcakeList() throws UserException {
         List<Cupcake> cupcakeList = new ArrayList<>();
 
@@ -45,7 +46,7 @@ public class CupcakeMapper {
         }
 
     }
-
+    */
     public List<Bottom> getBottomList() throws UserException {
         List<Bottom> bottomList = new ArrayList<>();
 
@@ -100,7 +101,6 @@ public class CupcakeMapper {
             throw new UserException("Connection to database could not be established");
         }
     }
-
     public List<Order> getOrderList() throws UserException {
         List<Order> orderList = new ArrayList<>();
 
@@ -193,5 +193,4 @@ public class CupcakeMapper {
             throw new UserException(ex.getMessage());
         }
     }
-
 }
