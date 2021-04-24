@@ -61,7 +61,8 @@
                     <td>${basketItem.amount}</td>
                     <td>${applicationScope.toppingList.get(basketItem.toppingId-1).price
                             + applicationScope.bottomList.get(basketItem.bottomId-1).price
-                            * basketItem.amount},- kr.</td>
+                            * basketItem.amount},- kr.
+                    </td>
                 </tr>
             </c:forEach>
             </tbody>

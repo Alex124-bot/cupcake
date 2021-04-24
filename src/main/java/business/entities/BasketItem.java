@@ -9,13 +9,6 @@ public class BasketItem {
         this.amount = amount;
     }
 
-    @Override
-    public String toString() {
-        return "toppingId#" + toppingId +
-                ", bottomId#" + bottomId +
-                ", amount#" + amount;
-    }
-
     public int getToppingId() {
         return toppingId;
     }
