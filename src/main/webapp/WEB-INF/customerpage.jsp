@@ -54,6 +54,8 @@
                 </p>
             </c:forEach>
 
+            <li class="list-group-item list-group-item-warning">A simple warning list group item</li>
+
         </div>
     </jsp:body>
 
