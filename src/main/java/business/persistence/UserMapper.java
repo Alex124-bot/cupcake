@@ -28,8 +28,8 @@ public class UserMapper
                 ps.executeUpdate();
                 ResultSet ids = ps.getGeneratedKeys();
                 ids.next();
-                int user_id = ids.getInt(1);
-                user.setId(user_id);
+                int id = ids.getInt(1);
+                user.setId(id);
             }
             catch (SQLException ex)
             {

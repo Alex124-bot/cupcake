@@ -18,8 +18,8 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "FrontController", urlPatterns = {"/fc/*"})
 public class FrontController extends HttpServlet
 {
-    private final static String USER = "dev";
-    private final static String PASSWORD = "dev";
+    private final static String USER = "root";
+    private final static String PASSWORD = "alex";
     private final static String URL = "jdbc:mysql://localhost:3306/cupcake?serverTimezone=CET";
 
     public static Database database;
