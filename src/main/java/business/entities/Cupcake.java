@@ -1,6 +1,6 @@
 package business.entities;
 
-public class CupcakeEntry {
+public class Cupcake {
 
      int cupcakeId;
      int orderId;
@@ -8,7 +8,7 @@ public class CupcakeEntry {
      int bottomId;
      int amount;
 
-    public CupcakeEntry(int cupcakeId, int orderId, int toppingId, int bottomId, int amount) {
+    public Cupcake(int cupcakeId, int orderId, int toppingId, int bottomId, int amount) {
         this.cupcakeId = cupcakeId;
         this.orderId = orderId;
         this.toppingId = toppingId;

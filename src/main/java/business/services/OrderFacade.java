@@ -1,11 +1,10 @@
 package business.services;
 
-import business.entities.OrderEntry;
+import business.entities.Order;
 import business.exceptions.UserException;
 import business.persistence.CupcakeMapper;
 import business.persistence.Database;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 public class OrderFacade
@@ -18,9 +17,9 @@ public class OrderFacade
         this.cupcakeMapper = new CupcakeMapper(database);
     }
 
-    public List<OrderEntry> getAllOrderDataEntries() throws UserException
+    public List<Order> getAllOrderDataEntries() throws UserException
     {
-        return cupcakeMapper.getAllOrders();
+        return cupcakeMapper.getOrderList();
     }
 
     public void insertOrderEntry(
@@ -29,6 +28,6 @@ public class OrderFacade
             int created,
             int completed) throws UserException
     {
-        cupcakeMapper.insertOrderEntry(order_id, user_id, created, completed);
+        cupcakeMapper.insertOrder(order_id, user_id, created, completed);
     }
 }

@@ -1,4 +1,4 @@
-package business.services;
+package business.entities;
 
 public class BasketItem {
     int toppingId, bottomId, amount;
@@ -28,11 +28,7 @@ public class BasketItem {
         return amount;
     }
 
-    public void setAmount(int amount) {
-        this.amount = amount;
-    }
-
-    public void addAmount(int amount) {
+    public void add(int amount) {
         this.amount += amount;
     }
 

@@ -1,8 +1,8 @@
 package business.persistence;
 
 import business.entities.Bottom;
-import business.entities.CupcakeEntry;
-import business.entities.OrderEntry;
+import business.entities.Cupcake;
+import business.entities.Order;
 import business.entities.Topping;
 import business.exceptions.UserException;
 
@@ -18,8 +18,8 @@ public class CupcakeMapper {
         this.database = database;
     }
 
-    public List<CupcakeEntry> getAllCupcakes() throws UserException {
-        List<CupcakeEntry> cupkageEntryList = new ArrayList<>();
+    public List<Cupcake> getCupcakeList() throws UserException {
+        List<Cupcake> cupcakeList = new ArrayList<>();
 
         try (Connection connection = database.connect()) {
             String sql = "SELECT * FROM cupcake;";
@@ -27,17 +27,16 @@ public class CupcakeMapper {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ResultSet rs = ps.executeQuery();
                 while (rs.next()) {
-                    int cupkageId = rs.getInt("cupcake_id");
+                    int cupcakeId = rs.getInt("cupcake_id");
                     int orderId = rs.getInt("order_id");
                     int toppingId = rs.getInt("topping_id");
                     int bottomId = rs.getInt("bottom_id");
                     int amount = rs.getInt("amount");
 
-
-                    cupkageEntryList.add(new CupcakeEntry(
-                            cupkageId, orderId, toppingId, bottomId, amount));
+                    cupcakeList.add(new Cupcake(
+                            cupcakeId, orderId, toppingId, bottomId, amount));
                 }
-                return cupkageEntryList;
+                return cupcakeList;
             } catch (SQLException ex) {
                 throw new UserException(ex.getMessage());
             }
@@ -47,7 +46,7 @@ public class CupcakeMapper {
 
     }
 
-    public List<Bottom> getAllCupcakeBottoms() throws UserException {
+    public List<Bottom> getBottomList() throws UserException {
         List<Bottom> bottomList = new ArrayList<>();
 
         try (Connection connection = database.connect()) {
@@ -75,7 +74,7 @@ public class CupcakeMapper {
 
     }
 
-    public List<Topping> getAllCupcakeToppings() throws UserException {
+    public List<Topping> getToppingList() throws UserException {
         List<Topping> toppingList = new ArrayList<>();
 
         try (Connection connection = database.connect()) {
@@ -102,8 +101,8 @@ public class CupcakeMapper {
         }
     }
 
-    public List<OrderEntry> getAllOrders() throws UserException {
-        List<OrderEntry> orderList = new ArrayList<>();
+    public List<Order> getOrderList() throws UserException {
+        List<Order> orderList = new ArrayList<>();
 
         try (Connection connection = database.connect()) {
             String sql = "SELECT * FROM order;";
@@ -116,7 +115,7 @@ public class CupcakeMapper {
                     int created = rs.getInt("created");
                     int completed = rs.getInt("completed");
 
-                    orderList.add(new OrderEntry(
+                    orderList.add(new Order(
                             orderId,
                             userId,
                             created,
@@ -134,7 +133,7 @@ public class CupcakeMapper {
         return orderList;
     }
 
-    public void insertOrderEntry(
+    public void insertOrder(
             int order_id,
             int user_id,
             int created,
@@ -166,7 +165,7 @@ public class CupcakeMapper {
         }
     }
 
-    public void insertCupcakeEntry(
+    public void insertCupcake(
             int topping_id,
             int bottom_id,
             int amount) throws UserException {

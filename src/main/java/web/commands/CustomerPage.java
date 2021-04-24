@@ -1,6 +1,6 @@
 package web.commands;
 
-import business.services.BasketItem;
+import business.entities.BasketItem;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -34,7 +34,7 @@ public class CustomerPage extends CommandProtectedPage {
 
             for (BasketItem bi : basket) {
                 if (topId == bi.getToppingId() && botId == bi.getBottomId()) {
-                    bi.addAmount(amount);
+                    bi.add(amount);
                     cupcakeExists = true;
                     break;
                 }

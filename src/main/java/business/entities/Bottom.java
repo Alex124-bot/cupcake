@@ -2,22 +2,22 @@ package business.entities;
 
 public class Bottom {
 
-    int bottom_id;
-    String bottom_name;
+    int id;
+    String name;
     int price;
 
-    public Bottom(int bottom_id, String bottom_name, int price) {
-        this.bottom_id = bottom_id;
-        this.bottom_name = bottom_name;
+    public Bottom(int id, String name, int price) {
+        this.id = id;
+        this.name = name;
         this.price = price;
     }
 
-    public int getBottom_id() {
-        return bottom_id;
+    public int getId() {
+        return id;
     }
 
-    public String getBottom_Name() {
-        return bottom_name;
+    public String getName() {
+        return name;
     }
 
     public int getPrice() {
@@ -26,6 +26,6 @@ public class Bottom {
 
     @Override
     public String toString() {
-        return bottom_name;
+        return name;
     }
 }

@@ -1,30 +1,30 @@
 package business.entities;
 
 public class Topping {
-    int topping_id;
-    String topping_name;
+    int id;
+    String name;
     int price;
 
-    public int getTopping_id() {
-        return topping_id;
+    public int getId() {
+        return id;
     }
 
-    public String getTopping_name() {
-        return topping_name;
+    public String getName() {
+        return name;
     }
 
     public int getPrice() {
         return price;
     }
 
-    public Topping(int topping_id, String topping_name, int price) {
-        this.topping_id = topping_id;
-        this.topping_name = topping_name;
+    public Topping(int id, String name, int price) {
+        this.id = id;
+        this.name = name;
         this.price = price;
     }
 
     @Override
     public String toString() {
-        return topping_name;
+        return name;
     }
 }

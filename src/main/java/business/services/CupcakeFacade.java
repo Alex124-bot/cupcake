@@ -1,6 +1,6 @@
 package business.services;
 
-import business.entities.CupcakeEntry;
+import business.entities.Cupcake;
 import business.exceptions.UserException;
 import business.persistence.CupcakeMapper;
 import business.persistence.Database;
@@ -17,9 +17,9 @@ public class CupcakeFacade
         this.cupcakeMapper = new CupcakeMapper(database);
     }
 
-    public List<CupcakeEntry> getAllCupcakeDataEntries() throws UserException
+    public List<Cupcake> getAllCupcakeDataEntries() throws UserException
     {
-        return cupcakeMapper.getAllCupcakes();
+        return cupcakeMapper.getCupcakeList();
     }
 
     public void insertCupkageEntry(
@@ -27,6 +27,6 @@ public class CupcakeFacade
             int bottom_id,
             int amount) throws UserException
     {
-        cupcakeMapper.insertCupcakeEntry(topping_id, bottom_id, amount);
+        cupcakeMapper.insertCupcake(topping_id, bottom_id, amount);
     }
 }

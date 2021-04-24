@@ -16,14 +16,14 @@
             <label for="topping">Toppings</label>
             <select name="topping" id="topping">
                 <c:forEach var="topping" items="${applicationScope.toppingList}">
-                    <option value="${topping.topping_id}">${topping.topping_name}</option>
+                    <option value="${topping.id}">${topping.name}</option>
                 </c:forEach>
             </select>
 
             <label for="bottom">Bottoms</label>
             <select name="bottom" id="bottom">
                 <c:forEach var="bottom" items="${applicationScope.bottomList}">
-                    <option value="${bottom.bottom_id}">${bottom.bottom_Name}</option>
+                    <option value="${bottom.id}">${bottom.name}</option>
                 </c:forEach>
             </select>
 
@@ -46,16 +46,22 @@
             <c:forEach var="basketItem" items="${sessionScope.basket}">
                 <p>
                     ${applicationScope.toppingList.get(basketItem.toppingId-1).topping_name} -
-                    ${applicationScope.bottomList.get(basketItem.bottomId-1).bottom_Name} x
+                    ${applicationScope.bottomList.get(basketItem.bottomId-1).name} x
                     ${basketItem.amount}
                     ${applicationScope.toppingList.get(basketItem.toppingId-1).price
                     + applicationScope.bottomList.get(basketItem.bottomId-1).price
                     * basketItem.amount},- kr.
                 </p>
             </c:forEach>
-
-            <li class="list-group-item list-group-item-warning">A simple warning list group item</li>
-
+        <c:forEach var="basketItem" items="${sessionScope.basket}">
+        <div class="list-group">
+            <a href="#" class="list-group-item list-group-item-action list-group-item-success">${applicationScope.toppingList.get(basketItem.toppingId-1).topping_name}</a>
+            <a href="#" class="list-group-item list-group-item-action list-group-item-danger">${applicationScope.bottomList.get(basketItem.bottomId-1).name}</a>
+            <a href="#" class="list-group-item list-group-item-action list-group-item-warning">${basketItem.amount}</a>
+            <a href="#" class="list-group-item list-group-item-action list-group-item-info">+ applicationScope.bottomList.get(basketItem.bottomId-1).price
+                * basketItem.amount},- kr.</a>
+        </div>
+        </c:forEach>
         </div>
     </jsp:body>
 

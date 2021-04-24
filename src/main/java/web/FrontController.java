@@ -44,9 +44,9 @@ public class FrontController extends HttpServlet
         CupcakeMapper cupcakeMapper = new CupcakeMapper(database);
         try
         {
-            getServletContext().setAttribute("bottomList", cupcakeMapper.getAllCupcakeBottoms());
-            getServletContext().setAttribute("toppingList", cupcakeMapper.getAllCupcakeToppings());
-            getServletContext().setAttribute("orderList", cupcakeMapper.getAllOrders());
+            getServletContext().setAttribute("bottomList", cupcakeMapper.getBottomList());
+            getServletContext().setAttribute("toppingList", cupcakeMapper.getToppingList());
+            getServletContext().setAttribute("orderList", cupcakeMapper.getOrderList());
         } catch (UserException e) {
             e.printStackTrace();
         }
