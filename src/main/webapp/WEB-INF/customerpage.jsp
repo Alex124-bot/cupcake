@@ -56,12 +56,12 @@
             <tbody>
             <c:forEach var="basketItem" items="${sessionScope.basket}">
                 <tr>
-                    <td scope="row">${applicationScope.toppingList.get(basketItem.toppingId-1).name}</td>
-                    <td>${applicationScope.bottomList.get(basketItem.bottomId-1).name}</td>
-                    <td>${basketItem.amount}</td>
-                    <td>${applicationScope.toppingList.get(basketItem.toppingId-1).price
+                    <td scope="row"><b>${applicationScope.toppingList.get(basketItem.toppingId-1).name}</b></td>
+                    <td><b>${applicationScope.bottomList.get(basketItem.bottomId-1).name}</b></td>
+                    <td><b>${basketItem.amount}</b></td>
+                    <td><b>${applicationScope.toppingList.get(basketItem.toppingId-1).price
                             + applicationScope.bottomList.get(basketItem.bottomId-1).price
-                            * basketItem.amount},- kr.</td>
+                            * basketItem.amount},- kr.</b></td>
                 </tr>
             </c:forEach>
             </tbody>
