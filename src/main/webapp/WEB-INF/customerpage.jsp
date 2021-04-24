@@ -16,14 +16,14 @@
             <label for="topping">Toppings</label>
             <select name="topping" id="topping">
                 <c:forEach var="topping" items="${applicationScope.toppingList}">
-                    <option value="${topping.id}">${topping.name}</option>
+                    <option value="${topping.topping_id}">${topping.topping_name}</option>
                 </c:forEach>
             </select>
 
             <label for="bottom">Bottoms</label>
             <select name="bottom" id="bottom">
                 <c:forEach var="bottom" items="${applicationScope.bottomList}">
-                    <option value="${bottom.id}">${bottom.name}</option>
+                    <option value="${bottom.bottom_id}">${bottom.bottom_Name}</option>
                 </c:forEach>
             </select>
 
@@ -42,28 +42,30 @@
             </select>
             <button type="submit" class="btn btn-success">submit</button>
         </form>
-        <div class="row">
+
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Top</th>
+                <th scope="col">Bund</th>
+                <th scope="col">Antal</th>
+                <th scope="col">Pris</th>
+            </tr>
+            </thead>
+            <tbody>
             <c:forEach var="basketItem" items="${sessionScope.basket}">
-                <p>
-                    ${applicationScope.toppingList.get(basketItem.toppingId-1).topping_name} -
-                    ${applicationScope.bottomList.get(basketItem.bottomId-1).name} x
-                    ${basketItem.amount}
-                    ${applicationScope.toppingList.get(basketItem.toppingId-1).price
-                    + applicationScope.bottomList.get(basketItem.bottomId-1).price
-                    * basketItem.amount},- kr.
-                </p>
+                <tr>
+                    <td scope="row">${applicationScope.toppingList.get(basketItem.toppingId-1).topping_name}</td>
+                    <td>${applicationScope.bottomList.get(basketItem.bottomId-1).bottom_Name}</td>
+                    <td>${basketItem.amount}</td>
+                    <td>${applicationScope.toppingList.get(basketItem.toppingId-1).price
+                            + applicationScope.bottomList.get(basketItem.bottomId-1).price
+                            * basketItem.amount},- kr.</td>
+                </tr>
             </c:forEach>
-        <c:forEach var="basketItem" items="${sessionScope.basket}">
-        <div class="list-group">
-            <a href="#" class="list-group-item list-group-item-action list-group-item-success">${applicationScope.toppingList.get(basketItem.toppingId-1).topping_name}</a>
-            <a href="#" class="list-group-item list-group-item-action list-group-item-danger">${applicationScope.bottomList.get(basketItem.bottomId-1).name}</a>
-            <a href="#" class="list-group-item list-group-item-action list-group-item-warning">${basketItem.amount}</a>
-            <a href="#" class="list-group-item list-group-item-action list-group-item-info">+ applicationScope.bottomList.get(basketItem.bottomId-1).price
-                * basketItem.amount},- kr.</a>
-        </div>
-        </c:forEach>
-        </div>
+            </tbody>
+        </table>
     </jsp:body>
 
 </t:genericpage>
-
