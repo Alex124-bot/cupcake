@@ -43,11 +43,14 @@
             <button type="submit" class="btn btn-success">submit</button>
         </form>
         <div class="row">
-            <c:forEach var="tmpCake" items="${sessionScope.tmpOrder}">
+            <c:forEach var="basketItem" items="${sessionScope.basket}">
                 <p>
-                    ${applicationScope.toppingList.get(tmpCake.toppingId).topping_name} -
-                    ${applicationScope.bottomList.get(tmpCake.bottomId).bottom_Name} x
-                    ${tmpCake.amount}
+                    ${applicationScope.toppingList.get(basketItem.toppingId-1).topping_name} -
+                    ${applicationScope.bottomList.get(basketItem.bottomId-1).bottom_Name} x
+                    ${basketItem.amount}
+                    ${applicationScope.toppingList.get(basketItem.toppingId-1).price
+                    + applicationScope.bottomList.get(basketItem.bottomId-1).price
+                    * basketItem.amount},- kr.
                 </p>
             </c:forEach>
 

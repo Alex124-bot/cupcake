@@ -1,9 +1,9 @@
 package business.services;
 
-public class TempCake {
+public class BasketItem {
     int toppingId, bottomId, amount;
 
-    public TempCake(int toppingId, int bottomId, int amount) {
+    public BasketItem(int toppingId, int bottomId, int amount) {
         this.toppingId = toppingId;
         this.bottomId = bottomId;
         this.amount = amount;
@@ -27,4 +27,14 @@ public class TempCake {
     public int getAmount() {
         return amount;
     }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
+
+    public void addAmount(int amount) {
+        this.amount += amount;
+    }
+
+
 }
