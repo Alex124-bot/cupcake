@@ -55,15 +55,15 @@
             </tr>
             </thead>
             <tbody>
-            <c:forEach var="basketItem" items="${sessionScope.basket.getList()}">
+            <c:forEach var="basketItem" items="${sessionScope.basket.list}">
                 <tr>
-                    <td scope="row"><b>${applicationScope.toppingList.get(basketItem.toppingId-1).getName()}</b></td>
-                    <td><strong>${applicationScope.bottomList.get(basketItem.bottomId-1).getName()}</strong></td>
-                    <td><strong>${basketItem.getAmount()}</strong></td>
+                    <td scope="row"><b>${applicationScope.toppingList.get(basketItem.toppingId-1).name}</b></td>
+                    <td><strong>${applicationScope.bottomList.get(basketItem.bottomId-1).name}</strong></td>
+                    <td><strong>${basketItem.amount}</strong></td>
                     <td><strong>
-                            ${applicationScope.toppingList.get(basketItem.toppingId-1).getPrice()
-                            + applicationScope.bottomList.get(basketItem.bottomId-1).getPrice()
-                            * basketItem.getAmount()},- kr.
+                            ${applicationScope.toppingList.get(basketItem.toppingId-1).price
+                            + applicationScope.bottomList.get(basketItem.bottomId-1).price
+                            * basketItem.amount},- kr.
                     </strong></td>
                 </tr>
             </c:forEach>
