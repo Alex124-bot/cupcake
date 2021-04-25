@@ -133,20 +133,9 @@ public class CupcakeMapper {
         return orderList;
     }
 
-    public void insertOrder(
-            int order_id,
-            int user_id,
-            int created,
-            int completed) throws UserException {
+    public void insertOrder(int order_id, int user_id, int created, int completed) throws UserException {
         try (Connection connection = database.connect()) {
-            String sql =
-                    "INSERT INTO `order`" +
-                            "(" +
-                            "`ordre_id`," +
-                            "`user_id`," +
-                            "`created`," +
-                            "`completed`)" +
-                            "VALUES (?,?,?,?);";
+            String sql = "INSERT INTO `order` (`ordre_id`, `user_id`, `created`, `completed`) VALUES (?,?,?,?);";
 
             try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
                 ps.setInt(1, order_id);
@@ -165,18 +154,9 @@ public class CupcakeMapper {
         }
     }
 
-    public void insertCupcake(
-            int toppingId,
-            int bottomId,
-            int amount) throws UserException {
+    public void insertCupcake(int toppingId, int bottomId, int amount) throws UserException {
         try (Connection connection = database.connect()) {
-            String sql =
-                    "INSERT INTO `cupcake`" +
-                            "(" +
-                            "`topping_id`," +
-                            "`bottom_id`," +
-                            "`amount`)" +
-                            "VALUES (?,?,?);";
+            String sql = "INSERT INTO `cupcake` (`topping_id`, `bottom_id`, `amount`) VALUES (?,?,?);";
 
             try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
                 ps.setInt(2, toppingId);
