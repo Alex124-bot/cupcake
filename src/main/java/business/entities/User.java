@@ -1,10 +1,8 @@
 package business.entities;
 
 public class User {
-    int id; // just used to demo retrieval of autogen keys in UserMapper
-    String email;
-    String password; // Should be hashed and secured
-    String role;
+    private int id; // just used to demo retrieval of autogen keys in UserMapper
+    private String email, password, role;
 
     public User(String email, String password, String role) {
         this.email = email;

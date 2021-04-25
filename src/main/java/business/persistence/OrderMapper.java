@@ -1,9 +1,7 @@
 package business.persistence;
 
-import business.entities.Bottom;
-import business.entities.Cupcake;
 import business.entities.Order;
-import business.entities.Topping;
+import business.entities.User;
 import business.exceptions.UserException;
 
 import java.sql.*;
@@ -27,16 +25,11 @@ public class OrderMapper {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ResultSet rs = ps.executeQuery();
                 while (rs.next()) {
-                    int orderId = rs.getInt("order_id");
+                    int id = rs.getInt("order_id");
                     int userId = rs.getInt("user_id");
                     int created = rs.getInt("created");
-                    int completed = rs.getInt("completed");
 
-                    orderList.add(new Order(
-                            orderId,
-                            userId,
-                            created,
-                            completed));
+                    orderList.add(new Order(id, userId, created));
                 }
                 return orderList;
 
@@ -50,19 +43,16 @@ public class OrderMapper {
         return orderList;
     }
 
-    public void insertOrder(int order_id, int user_id, int created, int completed) throws UserException {
+    public void insertOrder(int customerId) throws UserException {
         try (Connection connection = database.connect()) {
-            String sql = "INSERT INTO `order` (`ordre_id`, `user_id`, `created`, `completed`) VALUES (?,?,?,?);";
+            String sql = "INSERT INTO `order` (`user_id`) VALUES (?);";
 
             try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-                ps.setInt(1, order_id);
-                ps.setInt(2, user_id);
-                ps.setInt(3, created);
-                ps.setInt(4, completed);
+                ps.setInt(1, customerId);
                 ps.executeUpdate();
-                ResultSet ids = ps.getGeneratedKeys();
-                ids.next();
-                int cupcakeEntryId = ids.getInt(1);
+                ResultSet metadata = ps.getGeneratedKeys();
+                //metadata.next();
+                //int cupcakeEntryId = metadata.getInt(1);
             } catch (SQLException ex) {
                 throw new UserException(ex.getMessage());
             }

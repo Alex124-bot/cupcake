@@ -1,9 +1,8 @@
 package business.entities;
 
 public class Bottom {
-    int id;
-    String name;
-    int price;
+    private int id, price;
+    private String name;
 
     public Bottom(int id, String name, int price) {
         this.id = id;

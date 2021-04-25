@@ -1,9 +1,14 @@
 package business.entities;
 
 public class Topping {
-    int id;
+    private int id, price;
     String name;
-    int price;
+
+    public Topping(int id, String name, int price) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+    }
 
     public int getId() {
         return id;
@@ -15,12 +20,6 @@ public class Topping {
 
     public int getPrice() {
         return price;
-    }
-
-    public Topping(int id, String name, int price) {
-        this.id = id;
-        this.name = name;
-        this.price = price;
     }
 
     @Override

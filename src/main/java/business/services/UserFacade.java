@@ -7,7 +7,7 @@ import business.exceptions.UserException;
 
 public class UserFacade
 {
-    UserMapper userMapper;
+    private UserMapper userMapper;
 
     public UserFacade(Database database)
     {

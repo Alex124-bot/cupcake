@@ -33,8 +33,7 @@ public class CupcakeMapper {
                     int bottomId = rs.getInt("bottom_id");
                     int amount = rs.getInt("amount");
 
-                    cupcakeList.add(new Cupcake(
-                            cupcakeId, orderId, toppingId, bottomId, amount));
+                    cupcakeList.add(new Cupcake(cupcakeId, orderId, toppingId, bottomId, amount));
                 }
                 return cupcakeList;
             } catch (SQLException ex) {
@@ -59,10 +58,7 @@ public class CupcakeMapper {
                     String name = rs.getString("name");
                     int price = rs.getInt("price");
 
-                    bottomList.add(new Bottom(
-                            bottomId,
-                            name,
-                            price));
+                    bottomList.add(new Bottom(bottomId, name, price));
                 }
                 return bottomList;
             } catch (SQLException ex) {
@@ -98,14 +94,15 @@ public class CupcakeMapper {
         }
     }
 
-    public void insertCupcake(int toppingId, int bottomId, int amount) throws UserException {
+    public void insertCupcake(Cupcake cupcake) throws UserException {
         try (Connection connection = database.connect()) {
-            String sql = "INSERT INTO `cupcake` (`topping_id`, `bottom_id`, `amount`) VALUES (?,?,?);";
+            String sql = "INSERT INTO `cupcake` (`order_id`, `topping_id`, `bottom_id`, `amount`) VALUES (?,?,?,?);";
 
             try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-                ps.setInt(2, toppingId);
-                ps.setInt(3, bottomId);
-                ps.setInt(4, amount);
+                ps.setInt(1, cupcake.getOrderId());
+                ps.setInt(2, cupcake.getToppingId());
+                ps.setInt(3, cupcake.getBottomId());
+                ps.setInt(4, cupcake.getAmount());
                 ps.executeUpdate();
 //                ResultSet ids = ps.getGeneratedKeys();
 //                ids.next();
