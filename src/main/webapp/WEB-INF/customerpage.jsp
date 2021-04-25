@@ -28,7 +28,7 @@
                     </c:forEach>
                 </select>
 
-                <label class="p-2" for="amount">Antal:</label>
+                <label class="p-2" for="amount"><strong>Antal:</strong></label>
                 <select class="p-1" name="amount" id="amount">
                     <option value="1">1</option>
                     <option value="2">2</option>
