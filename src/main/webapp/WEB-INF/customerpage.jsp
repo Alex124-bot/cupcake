@@ -55,7 +55,7 @@
             </tr>
             </thead>
             <tbody>
-            <c:forEach var="basketItem" items="${sessionScope.basket}">
+            <c:forEach var="basketItem" items="${sessionScope.basket.getList()}">
                 <tr>
                     <td scope="row"><b>${applicationScope.toppingList.get(basketItem.toppingId-1).getName()}</b></td>
                     <td><strong>${applicationScope.bottomList.get(basketItem.bottomId-1).getName()}</strong></td>

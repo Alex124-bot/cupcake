@@ -1,14 +1,17 @@
 package business.persistence;
 
 import business.entities.BasketItem;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Basket {
-    List<BasketItem> basket = new ArrayList<>();
+    List<BasketItem> basket;
 
     public Basket() {
+        basket = new ArrayList<>();
     }
+
 
     public void add(BasketItem basketItem) {
         if (itemExists(basketItem)) getDublicateItem(basketItem).add(basketItem.getAmount());
@@ -39,4 +42,7 @@ public class Basket {
         return null;
     }
 
+    public List<BasketItem> getList() {
+        return basket;
+    }
 }

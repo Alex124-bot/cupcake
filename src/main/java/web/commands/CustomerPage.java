@@ -1,6 +1,7 @@
 package web.commands;
 
 import business.entities.BasketItem;
+import business.exceptions.UserException;
 import business.persistence.Basket;
 
 import javax.servlet.http.HttpServletRequest;
@@ -33,6 +34,10 @@ public class CustomerPage extends CommandProtectedPage {
             if (newItem.isValid()) {
                 basket.add(newItem);
                 session.setAttribute("basket", basket);
+            } else try {
+                throw new UserException("Det lykkedes ikke at tilføje cupcake til kurven.");
+            } catch (UserException e) {
+                e.printStackTrace();
             }
         }
         return pageToShow;
