@@ -67,8 +67,8 @@
             </c:forEach>
             </tbody>
         </table>
-        <button class="btn btn-lg btn-success" type="submit">Bestil til afhentning</button>
-        <button class="btn btn-lg btn-outline-dark" type="submit">Ryd kurv</button>
+        <button class="btn float-left btn-lg btn-success" type="submit">Bestil til afhentning</button>
+        <button class="btn float-right mx-2 btn-lg btn-outline-dark" type="submit">Ryd kurv</button>
     </jsp:body>
 
 </t:genericpage>
