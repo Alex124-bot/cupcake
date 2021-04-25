@@ -22,11 +22,7 @@ public class OrderFacade
         return cupcakeMapper.getOrderList();
     }
 
-    public void insertOrder(
-            int order_id,
-            int user_id,
-            int created,
-            int completed) throws UserException
+    public void insertOrder(int order_id, int user_id, int created, int completed) throws UserException
     {
         cupcakeMapper.insertOrder(order_id, user_id, created, completed);
     }

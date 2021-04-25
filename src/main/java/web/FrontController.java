@@ -36,6 +36,7 @@ public class FrontController extends HttpServlet {
         // Initialize whatever global datastructures needed here:
 
         CupcakeMapper cupcakeMapper = new CupcakeMapper(database);
+
         try {
             getServletContext().setAttribute("bottomList", cupcakeMapper.getBottomList());
             getServletContext().setAttribute("toppingList", cupcakeMapper.getToppingList());
@@ -43,6 +44,7 @@ public class FrontController extends HttpServlet {
         } catch (UserException e) {
             e.printStackTrace();
         }
+
     }
 
     protected void processRequest(
