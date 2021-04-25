@@ -18,28 +18,27 @@ public class CustomerPage extends CommandProtectedPage {
         HttpSession session = request.getSession();
         if (request.getParameter("topping") != null) {
             ArrayList<BasketItem> basket;
-            int topId = 0;
-            int botId = 0;
-            int amount = 0;
-            boolean cupcakeExists = false;
+            BasketItem newItem = new BasketItem(-1, -1, -1);
             try {
-                topId = Integer.parseInt(request.getParameter("topping"));
-                botId = Integer.parseInt(request.getParameter("bottom"));
-                amount = Integer.parseInt(request.getParameter("amount"));
+                newItem.setToppingId(Integer.parseInt(request.getParameter("topping")));
+                newItem.setBottomId(Integer.parseInt(request.getParameter("bottom")));
+                newItem.setAmount(Integer.parseInt(request.getParameter("amount")));
             } catch (NumberFormatException e) {
                 e.printStackTrace();
             }
-            basket = (session.getAttribute("basket") == null) ?
-                    new ArrayList<>() : (ArrayList<BasketItem>) session.getAttribute("basket");
-
-            for (BasketItem bi : basket) {
-                if (topId == bi.getToppingId() && botId == bi.getBottomId()) {
-                    bi.add(amount);
-                    cupcakeExists = true;
-                    break;
+            if (session.getAttribute("basket") == null) basket = new ArrayList<>();
+            else {
+                basket = (ArrayList<BasketItem>) session.getAttribute("basket");
+                boolean uniqueItem = true;
+                for (BasketItem basketItem : basket) {
+                    if (basketItem.equals(newItem)) {
+                        basketItem.add(newItem.getAmount());
+                        uniqueItem = false;
+                        break;
+                    }
                 }
+                if (uniqueItem) basket.add(newItem);
             }
-            if(!cupcakeExists) basket.add(new BasketItem(topId, botId, amount));
             session.setAttribute("basket", basket);
         }
         return pageToShow;

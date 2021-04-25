@@ -1,6 +1,7 @@
 package web;
 
 import business.exceptions.UserException;
+import business.persistence.Basket;
 import business.persistence.CupcakeMapper;
 import business.persistence.Database;
 import business.services.CupcakeFacade;
@@ -39,6 +40,7 @@ public class FrontController extends HttpServlet {
         // Initialize whatever global datastructures needed here:
 
         CupcakeFacade cupcakeFacade = new CupcakeFacade(database);
+        Basket basket = new Basket(cupcakeFacade);
 
         try {
             getServletContext().setAttribute("bottomList", cupcakeFacade.getBottomList());
