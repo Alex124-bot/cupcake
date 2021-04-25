@@ -1,6 +1,7 @@
 package web.commands;
 
 import business.entities.BasketItem;
+import business.persistence.Basket;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,9 +17,12 @@ public class CustomerPage extends CommandProtectedPage {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
+        Basket basket;
+        if (session.getAttribute("basket") == null) basket = new Basket();
+        else basket = (Basket) session.getAttribute("basket");
+
         if (request.getParameter("topping") != null) {
-            ArrayList<BasketItem> basket;
-            BasketItem newItem = new BasketItem(-1, -1, -1);
+            BasketItem newItem = new BasketItem();
             try {
                 newItem.setToppingId(Integer.parseInt(request.getParameter("topping")));
                 newItem.setBottomId(Integer.parseInt(request.getParameter("bottom")));
@@ -26,20 +30,10 @@ public class CustomerPage extends CommandProtectedPage {
             } catch (NumberFormatException e) {
                 e.printStackTrace();
             }
-            if (session.getAttribute("basket") == null) basket = new ArrayList<>();
-            else {
-                basket = (ArrayList<BasketItem>) session.getAttribute("basket");
-                boolean uniqueItem = true;
-                for (BasketItem basketItem : basket) {
-                    if (basketItem.equals(newItem)) {
-                        basketItem.add(newItem.getAmount());
-                        uniqueItem = false;
-                        break;
-                    }
-                }
-                if (uniqueItem) basket.add(newItem);
+            if (newItem.isValid()) {
+                basket.add(newItem);
+                session.setAttribute("basket", basket);
             }
-            session.setAttribute("basket", basket);
         }
         return pageToShow;
     }

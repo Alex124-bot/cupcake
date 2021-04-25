@@ -11,6 +11,12 @@ public class BasketItem {
         this.amount = amount;
     }
 
+    public BasketItem() {
+        this.toppingId = -1;
+        this.bottomId = -1;
+        this.amount = -1;
+    }
+
     public int getToppingId() {
         return toppingId;
     }
@@ -37,6 +43,10 @@ public class BasketItem {
 
     public void add(int amount) {
         this.amount += amount;
+    }
+
+    public boolean isValid() {
+        return toppingId > 0 && bottomId > 0 && amount > 0;
     }
 
     @Override

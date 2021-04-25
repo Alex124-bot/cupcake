@@ -40,8 +40,6 @@ public class FrontController extends HttpServlet {
         // Initialize whatever global datastructures needed here:
 
         CupcakeFacade cupcakeFacade = new CupcakeFacade(database);
-        Basket basket = new Basket(cupcakeFacade);
-
         try {
             getServletContext().setAttribute("bottomList", cupcakeFacade.getBottomList());
             getServletContext().setAttribute("toppingList", cupcakeFacade.getToppingList());

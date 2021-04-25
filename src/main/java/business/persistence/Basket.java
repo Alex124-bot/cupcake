@@ -1,14 +1,42 @@
 package business.persistence;
 
-import business.exceptions.UserException;
-import business.services.CupcakeFacade;
-
-import javax.servlet.ServletContext;
+import business.entities.BasketItem;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Basket {
-    private CupcakeFacade cupcakeFacade;
+    List<BasketItem> basket = new ArrayList<>();
 
-    public Basket(CupcakeFacade cupcakeFacade) {
-        this.cupcakeFacade = cupcakeFacade;
+    public Basket() {
     }
+
+    public void add(BasketItem basketItem) {
+        if (itemExists(basketItem)) getDublicateItem(basketItem).add(basketItem.getAmount());
+        else basket.add(basketItem);
+    }
+
+    public void remove(BasketItem basketItem) {
+        basket.remove(basketItem);
+    }
+
+    private boolean itemExists(BasketItem newItem) {
+        for (BasketItem basketItem : basket) {
+            if (basketItem.equals(newItem)) {
+                basketItem.add(newItem.getAmount());
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private BasketItem getDublicateItem(BasketItem newItem) {
+        for (BasketItem basketItem : basket) {
+            if (basketItem.equals(newItem)) {
+                basketItem.add(newItem.getAmount());
+                return basketItem;
+            }
+        }
+        return null;
+    }
+
 }
