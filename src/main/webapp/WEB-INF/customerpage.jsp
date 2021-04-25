@@ -17,14 +17,14 @@
                 <label class="p-2" for="topping"><Strong>Topping:</Strong></label>
                 <select class="p-1" name="topping" id="topping">
                     <c:forEach var="topping" items="${applicationScope.toppingList}">
-                        <option value="${topping.id}">${topping.name}</option>
+                        <option value="${topping.id}" selected="${requestScope.get(topping.name)}">${topping.name}</option>
                     </c:forEach>
                 </select>
 
                 <label class="p-2" for="bottom"><strong>Bund:</strong></label>
                 <select class="p-1" name="bottom" id="bottom">
                     <c:forEach var="bottom" items="${applicationScope.bottomList}">
-                        <option value="${bottom.id}">${bottom.name}</option>
+                        <option value="${bottom.id}" selected="${requestScope.get(bottom.name)}">${bottom.name}</option>
                     </c:forEach>
                 </select>
 
