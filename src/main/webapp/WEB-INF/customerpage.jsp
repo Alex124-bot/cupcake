@@ -17,7 +17,8 @@
                 <label class="p-2" for="topping"><Strong>Topping:</Strong></label>
                 <select class="p-1" name="topping" id="topping">
                     <c:forEach var="topping" items="${applicationScope.toppingList}">
-                        <option value="${topping.id}" selected="${requestScope.get(topping.name)}">${topping.name}</option>
+                        <option value="${topping.id}"
+                                selected="${requestScope.get(topping.name)}">${topping.name}</option>
                     </c:forEach>
                 </select>
 
@@ -51,20 +52,22 @@
                 <th scope="col">Top</th>
                 <th scope="col">Bund</th>
                 <th scope="col">Antal</th>
+                <th scope="col">Rediger</th>
                 <th scope="col">Pris</th>
             </tr>
             </thead>
             <tbody>
-            <c:forEach var="basketItem" items="${sessionScope.basket.list}">
+            <c:forEach var="basketItem" items="${sessionScope.basket.getList()}">
                 <tr>
                     <td scope="row"><b>${applicationScope.toppingList.get(basketItem.toppingId-1).name}</b></td>
                     <td><strong>${applicationScope.bottomList.get(basketItem.bottomId-1).name}</strong></td>
-                    <td><strong>${basketItem.amount}</strong></td>
-                    <td><strong>
-                            ${applicationScope.toppingList.get(basketItem.toppingId-1).price
+                    <td><strong>${basketItem.amount} stk.</strong></td>
+                    <td><a class="ml-sm-2 ml-6 py-0 btn btn-sm btn-success"><strong>+</strong></a>
+                        <a class="ml-sm-2 ml-6 py-0 btn btn-sm btn btn-danger"><strong>-</strong></a>
+                    <a class="ml-sm-2 ml-6 py-0 btn btn-sm btn btn-dark"><strong>x</strong></a></td>
+                    <td><strong>${applicationScope.toppingList.get(basketItem.toppingId-1).price
                             + applicationScope.bottomList.get(basketItem.bottomId-1).price
-                            * basketItem.amount},- kr.
-                    </strong></td>
+                            * basketItem.amount},- kr.</strong></td>
                 </tr>
             </c:forEach>
             </tbody>
