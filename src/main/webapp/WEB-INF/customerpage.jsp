@@ -87,7 +87,7 @@
             <fieldset>
                 <button class="btn float-left btn-lg btn-success" name="order" type="submit">Bestil til afhentning
                 </button>
-                <input class="btn float-right mx-2 btn-lg btn-outline-dark" name="clear" value="clear" type="submit"/>
+                <input class="btn float-right mx-2 btn-lg btn-outline-dark" name="clear" value="Ryd" type="submit"/>
             </fieldset>
         </form>
     </jsp:body>
