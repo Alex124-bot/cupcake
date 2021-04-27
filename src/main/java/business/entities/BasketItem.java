@@ -45,6 +45,10 @@ public class BasketItem {
         this.amount += amount;
     }
 
+    public void subtract(int amount) {
+        this.amount -= amount;
+    }
+
     public boolean isValid() {
         return toppingId > 0 && bottomId > 0 && amount > 0;
     }
