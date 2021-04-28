@@ -74,8 +74,8 @@
                                 <button type="submit" name="delete" value="${basketItem.toppingId}%${basketItem.bottomId}"
                                         class="ml-sm-2 ml-6 py-0 btn btn-sm btn btn-dark"><strong>x</strong></button>
                             </td>
-                            <td><strong>${applicationScope.toppingList.get(basketItem.toppingId-1).price
-                                    + applicationScope.bottomList.get(basketItem.bottomId-1).price
+                            <td><strong>${(applicationScope.toppingList.get(basketItem.toppingId-1).price
+                                    + applicationScope.bottomList.get(basketItem.bottomId-1).price)
                                     * basketItem.amount},- kr.</strong></td>
                         </tr>
                     </c:forEach>
@@ -85,8 +85,8 @@
         </form>
         <form class="mt-4" method="post" action="${pageContext.request.contextPath}/fc/orderpage">
             <fieldset>
-                <button class="btn float-left btn-lg btn-success" name="order" type="submit"/>
-                <button class="btn float-right mx-2 btn-lg btn-outline-dark" formaction="${pageContext.request.contextPath}/fc/customerpage" name="clear" value="Ryd" type="submit"/>
+                <input class="btn float-left btn-lg btn-success" name="order" value="Bestil til afhentning" type="submit"/>
+                <input class="btn float-right mx-2 btn-lg btn-outline-dark" formaction="${pageContext.request.contextPath}/fc/customerpage" name="clear" value="Ryd" type="submit"/>
             </fieldset>
         </form>
     </jsp:body>
