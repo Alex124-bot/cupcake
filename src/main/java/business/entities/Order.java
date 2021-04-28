@@ -1,9 +1,12 @@
 package business.entities;
 
-public class Order {
-    private int id, userId, created;
+import java.sql.Date;
 
-    public Order(int id, int userId, int created) {
+public class Order {
+    private int id, userId;
+    Date created;
+
+    public Order(int id, int userId, Date created) {
         this.id = id;
         this.userId = userId;
         this.created = created;
@@ -17,7 +20,7 @@ public class Order {
         return userId;
     }
 
-    public int getCreated() {
+    public Date getCreated() {
         return created;
     }
 }

@@ -22,13 +22,6 @@ public class OrderFacade {
     }
 
     public Order startOrder(User user) throws UserException {
-        ResultSet metadata = orderMapper.startOrder(user.getId());
-        try {
-            return new Order(metadata.getInt("ordre_id"), user.getId(), metadata.getInt("created"));
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
+        return orderMapper.startOrder(user.getId());
     }
-
 }

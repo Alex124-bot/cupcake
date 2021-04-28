@@ -25,8 +25,8 @@ public class OrderMapper {
                 ResultSet rs = ps.executeQuery();
                 while (rs.next()) {
                     int id = rs.getInt("order_id");
-                    int userId = rs.getInt("customer_id");
-                    int created = rs.getInt("created");
+                    int userId = rs.getInt("user_id");
+                    Date created = rs.getDate("created");
 
                     orderList.add(new Order(id, userId, created));
                 }
@@ -42,14 +42,16 @@ public class OrderMapper {
         return orderList;
     }
 
-    public ResultSet startOrder(int customerId) throws UserException {
+    public Order startOrder(int userId) throws UserException {
         try (Connection connection = database.connect()) {
-            String sql = "INSERT INTO `order` (`customer_id`) VALUES (?);";
-
+            String sql = "INSERT INTO `order` (`user_id`) VALUES (?);";
+            Order order;
             try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-                ps.setInt(1, customerId);
+                ps.setInt(1, userId);
                 ps.executeUpdate();
-                return ps.getGeneratedKeys();
+                ResultSet rs = ps.getGeneratedKeys();
+                order = new Order(rs.getInt("odre_id"), userId, rs.getDate("created"));
+                return order;
             } catch (SQLException ex) {
                 throw new UserException(ex.getMessage());
             }
