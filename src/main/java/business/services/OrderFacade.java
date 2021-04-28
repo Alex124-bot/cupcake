@@ -21,8 +21,8 @@ public class OrderFacade {
         return orderMapper.getOrderList();
     }
 
-    public Order insertOrder(User user) throws UserException {
-        ResultSet metadata = orderMapper.insertOrder(user.getId());
+    public Order startOrder(User user) throws UserException {
+        ResultSet metadata = orderMapper.startOrder(user.getId());
         try {
             return new Order(metadata.getInt("ordre_id"), user.getId(), metadata.getInt("created"));
         } catch (SQLException e) {

@@ -1,7 +1,6 @@
 package business.persistence;
 
 import business.entities.Order;
-import business.entities.User;
 import business.exceptions.UserException;
 
 import java.sql.*;
@@ -20,13 +19,13 @@ public class OrderMapper {
         List<Order> orderList = new ArrayList<>();
 
         try (Connection connection = database.connect()) {
-            String sql = "SELECT * FROM order;";
+            String sql = "SELECT * FROM `order`;";
 
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ResultSet rs = ps.executeQuery();
                 while (rs.next()) {
                     int id = rs.getInt("order_id");
-                    int userId = rs.getInt("user_id");
+                    int userId = rs.getInt("customer_id");
                     int created = rs.getInt("created");
 
                     orderList.add(new Order(id, userId, created));
@@ -43,9 +42,9 @@ public class OrderMapper {
         return orderList;
     }
 
-    public ResultSet insertOrder(int customerId) throws UserException {
+    public ResultSet startOrder(int customerId) throws UserException {
         try (Connection connection = database.connect()) {
-            String sql = "INSERT INTO `order` (`user_id`) VALUES (?);";
+            String sql = "INSERT INTO `order` (`customer_id`) VALUES (?);";
 
             try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
                 ps.setInt(1, customerId);
