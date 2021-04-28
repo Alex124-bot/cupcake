@@ -1,8 +1,6 @@
 package business.services;
 
-import business.entities.Bottom;
-import business.entities.Cupcake;
-import business.entities.Topping;
+import business.entities.*;
 import business.exceptions.UserException;
 import business.persistence.CupcakeMapper;
 import business.persistence.Database;
@@ -20,6 +18,11 @@ public class CupcakeFacade {
         cupcakeMapper.insertCupcake(cupcake);
     }
     public void insertCupcake(Cupcake cupcake) throws UserException {
+        cupcakeMapper.insertCupcake(cupcake);
+    }
+
+    public void insertCupcake(Order order, BasketItem bi) throws UserException {
+        Cupcake cupcake = new Cupcake(order.getId(), bi.getToppingId(), bi.getBottomId(), bi.getAmount());
         cupcakeMapper.insertCupcake(cupcake);
     }
 
