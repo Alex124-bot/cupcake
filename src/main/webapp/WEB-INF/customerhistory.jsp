@@ -10,7 +10,7 @@
     </jsp:attribute>
     <jsp:body>
         <h2>Hej, ${sessionScope.email} </h2>
-        You are now logged in as a EMPLOYEE of our wonderful site.
+        You are now logged in as a customer of our wonderful site.
 
     </jsp:body>
 </t:genericpage>
