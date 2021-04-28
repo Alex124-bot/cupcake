@@ -50,7 +50,7 @@ public class OrderMapper {
                 ps.setInt(1, userId);
                 ps.executeUpdate();
                 ResultSet rs = ps.getGeneratedKeys();
-                order = new Order(rs.getInt("odre_id"), userId, rs.getDate("created"));
+                order = new Order(rs.getInt("ordre_id"), userId, rs.getDate("created"));
                 return order;
             } catch (SQLException ex) {
                 throw new UserException(ex.getMessage());
