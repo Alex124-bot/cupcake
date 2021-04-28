@@ -21,7 +21,6 @@ public class CustomerPage extends CommandProtectedPage {
         Basket basket = (session.getAttribute("basket") == null) ? new Basket() : (Basket) session.getAttribute("basket");
         if (request.getParameter("clear") != null) {
             session.setAttribute("basket", null);
-            return pageToShow;
         }
         else if (request.getParameter("plus") != null) {
             StringTokenizer st = new StringTokenizer(request.getParameter("plus"), "%");
