@@ -43,16 +43,14 @@ public class OrderMapper {
         return orderList;
     }
 
-    public void insertOrder(int customerId) throws UserException {
+    public ResultSet insertOrder(int customerId) throws UserException {
         try (Connection connection = database.connect()) {
             String sql = "INSERT INTO `order` (`user_id`) VALUES (?);";
 
             try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
                 ps.setInt(1, customerId);
                 ps.executeUpdate();
-                ResultSet metadata = ps.getGeneratedKeys();
-                //metadata.next();
-                //int cupcakeEntryId = metadata.getInt(1);
+                return ps.getGeneratedKeys();
             } catch (SQLException ex) {
                 throw new UserException(ex.getMessage());
             }
